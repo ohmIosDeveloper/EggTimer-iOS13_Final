@@ -10,6 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
+    let softTime = 5
+    let mediumTime = 8
+    let hardTime = 12
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        
+        let hardness = sender.currentTitle
+    }
+    
 
 }
