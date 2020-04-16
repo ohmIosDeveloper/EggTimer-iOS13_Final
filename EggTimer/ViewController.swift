@@ -17,6 +17,20 @@ class ViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         let hardness = sender.currentTitle
+        var selectedHardnessTime: Int
+        
+        switch hardness {
+        case "Soft":
+            selectedHardnessTime = softTime
+        case "Medium":
+            selectedHardnessTime = mediumTime
+        case "Hard":
+            selectedHardnessTime = hardTime
+        default:
+            selectedHardnessTime = -1
+        }
+        
+        print (selectedHardnessTime)
     }
     
 
