@@ -11,26 +11,27 @@ import UIKit
 class ViewController: UIViewController {
     
     let timesDictionary = ["Soft":5,"Medium":8,"Hard":12]
-    var count: Int = 0
+    var totalTime: Int = 0
+    var secondsPassed: Int = 0
     var timer = Timer()
     
+    @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         timer.invalidate()
         
         let hardness = sender.currentTitle!
         
-        count = timesDictionary[hardness]!
+        totalTime = timesDictionary[hardness]!
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         }
 
     @objc func updateCounter() {
-            if(count > 0) {
-                print("\(count) seconds.")
-                count -= 1
+            if(secondsPassed < totalTime) {
+                progressBar.progress = Float(secondsPassed / totalTime)
+                secondsPassed += 1
             }
             else {
                 timer.invalidate()
