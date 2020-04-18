@@ -10,27 +10,33 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let softTime = 5
-    let mediumTime = 8
-    let hardTime = 12
+    let timesDictionary = ["Soft":5,"Medium":8,"Hard":12]
+    var count: Int = 0
+    var timer = Timer()
+    
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         
-        let hardness = sender.currentTitle
-        var selectedHardnessTime: Int
+        timer.invalidate()
         
-        switch hardness {
-        case "Soft":
-            selectedHardnessTime = softTime
-        case "Medium":
-            selectedHardnessTime = mediumTime
-        case "Hard":
-            selectedHardnessTime = hardTime
-        default:
-            selectedHardnessTime = -1
+        let hardness = sender.currentTitle!
+        
+        count = timesDictionary[hardness]!
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         }
-        
-        print (selectedHardnessTime)
+
+    @objc func updateCounter() {
+            if(count > 0) {
+                print("\(count) seconds.")
+                count -= 1
+            }
+            else {
+                timer.invalidate()
+                titleLabel.text = "Done"
+                
+        }
     }
     
 
